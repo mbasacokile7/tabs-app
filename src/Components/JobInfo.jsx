@@ -2,7 +2,7 @@ import Duties from "./Duties";
 
 function JobInfo({ jobs }) {
   // Destructure the Jobs object
-  const { id, order, title, dates, duties, company } = jobs;
+  const { id, order, title, dates, duties, company } = jobs[0];
 
   return (
     <article className="job-info" key={id}>
