@@ -1,8 +1,8 @@
 import Duties from "./Duties";
 
-function JobInfo({ jobs }) {
+function JobInfo({ jobs, currentItem }) {
   // Destructure the Jobs object
-  const { id, order, title, dates, duties, company } = jobs[0];
+  const { id, order, title, dates, duties, company } = jobs[currentItem];
 
   return (
     <article className="job-info" key={id}>

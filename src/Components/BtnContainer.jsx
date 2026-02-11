@@ -1,12 +1,16 @@
 import { v4 as uuid4 } from "uuid";
 
-function BtnContainer({ comps, jobFilter }) {
+function BtnContainer({ comps, currentItem, setCurrentItem }) {
   return (
     <div className="btn-container">
-      {comps.map((comp) => {
+      {comps.map((comp, index) => {
         const id = uuid4();
         return (
-          <button className="job-btn" key={id} onClick={() => jobFilter(comp)}>
+          <button
+            className={index === currentItem ? "job-btn active-btn" : "job-btn"}
+            key={id}
+            onClick={() => setCurrentItem(index)}
+          >
             {comp}
           </button>
         );
