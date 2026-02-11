@@ -1,57 +1,88 @@
-## Figma URL
+# Tabs Application
 
-[Tabs](https://www.figma.com/file/FJC19b9eUWS62HKR8L9Dmn/Tabs?node-id=0%3A1&t=8Rio02EFK1r9ItDW-1)
+A React learning project demonstrating core React concepts through an interactive job information display system.
 
-## Steps
+## Project Overview
 
-#### Fetch Data
+This project is a practical application of essential React fundamentals to build an interactive tabs component that fetches and displays job information. Users can click on different company tabs to view corresponding job details.
 
-In App.jsx, use the fetch API to get job information from an external API. Use the useEffect hook to make the API call when the component mounts. While the data is being fetched, set up a loading state that displays a message to the user.
+## Learning Objectives
 
-#### State Value
+This project was created to apply and reinforce lessons learned about:
 
-Once the data has been fetched, store it in a state variable using the useState hook. This will allow you to modify the data and have those changes automatically reflected in the rendered output.
+- **State Management**: Using `useState` to manage component state for the current job selection and job data
+- **useEffect Hook**: Fetching external API data when the component mounts and handling side effects
+- **Data Fetching**: Retrieving job information from an external API and handling loading states
+- **Conditional Rendering**: Displaying different content based on loading states and the selected job
+- **Functional Components**: Building reusable, functional React components with props and composition
 
-#### JobInfo
+## Project Structure
 
-Create a JobInfo component to display the first job in the list. Use object destructuring to extract the relevant data from the job object. Display the company, dates, title, and duties, using the Duties component to render the list of duties.
-
-#### JobDuties
-
-In the Duties component, iterate over the array of duties and render each item. If you want to use icons, you will need to install the react-icons library.
-
-#### UUID Library
-
-```sh
-npm install uuid
+```
+src/
+├── Components/
+│   ├── BtnContainer.jsx      # Renders clickable tab buttons for each job
+│   ├── Duties.jsx            # Displays the list of duties for selected job
+│   └── JobInfo.jsx           # Shows detailed information about the selected job
+├── App.jsx                   # Main component handling state and data fetching
+├── index.css                 # Application styles
+└── main.jsx                  # Entry point
 ```
 
-```js
-import { v4 as uuidv4 } from 'uuid';
+## Features
+
+- **API Data Fetching**: Fetches job information from an external API using the Fetch API
+- **Dynamic Tab Selection**: Click on job tabs to switch between different positions
+- **Loading State**: Displays loading message while data is being fetched
+- **Component Composition**: Uses modular functional components for better code organization
+- **Unique Key Management**: Implements UUID library for generating unique keys for list items
+
+## UI Preview
+
+![Tabs Application UI](./Tabs-UI.png)
+
+## Component Details
+
+### App.jsx
+
+- Manages the jobs data state and current selected job index
+- Implements `useEffect` to fetch job data on component mount
+- Handles loading state display
+- Passes state and setters to child components via props
+
+### BtnContainer.jsx
+
+- Maps through jobs array to create a button for each position
+- Applies active/inactive styling based on current selection
+- Triggers job selection via `setCurrentItem`
+
+### JobInfo.jsx
+
+- Displays company name, job title, dates, and job description
+- Uses object destructuring to extract relevant data
+- Renders the Duties component for job responsibilities
+
+### Duties.jsx
+
+- Iterates through duties array and renders each responsibility
+- Uses react-icons for visual icons next to each duty
+
+## Getting Started
+
+### Installation
+
+```bash
+npm install
 ```
 
-Since the job data does not have an id, you can install the uuid library to generate unique ids for each job. Use these ids instead of the index to set the key prop for the JobInfo and Duties components.
+### Running the Application
 
-#### BtnContainer
+```bash
+npm run dev
+```
 
-Set up a BtnContainer component and pass the jobs array, currentItem state variable, and setCurrentItem function down as props. In the BtnContainer component, create a button for each job in the jobs array,
+The application will start on a local development server, and you can view it in your browser.
 
-#### CurrentItem
+## Design Reference
 
-Create a currentItem state variable in App.jsx and set it to 0 initially. Pass this state variable down to the JobInfo component as a prop, and use it to display the current job.
-
-#### SetCurrentItem
-
-Attach the setCurrentItem function to each button.
-When the user clicks a button, the setCurrentItem function should be called with the index of the selected job. This function should update the currentItem state variable, causing the JobInfo component to render the selected job.
-
-Overall, the flow of the application should look something like this:
-
-- In App.jsx, use the fetch API to get job information from an external API, set up a loading state, and display a message to the user while the data is being fetched.
-- Once the data has been fetched, store it in a state variable using the useState hook.
-- Create a JobInfo component to display the first job in the list, using object destructuring to extract the relevant data from the job object.
-- Use the Duties component to render the list of duties for each job.
-- Use the uuid library to generate unique ids for each job, and use these ids instead of the index to set the key prop for the JobInfo and Duties components.
-- Create a currentItem state variable in App.jsx and pass it down to the JobInfo component as a prop, using it to display the current job.
-- Set up a BtnContainer component and pass the jobs array, currentItem state variable, and setCurrentItem function down as props.
-- In the BtnContainer component, create a button for each job in the jobs array, and attach the setCurrentItem function to each button to change the currentItem state variable and render the selected job.
+[Figma Design File](https://www.figma.com/file/FJC19b9eUWS62HKR8L9Dmn/Tabs?node-id=0%3A1&t=8Rio02EFK1r9ItDW-1)
